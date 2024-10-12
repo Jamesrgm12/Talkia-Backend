@@ -25,9 +25,9 @@ public class QuizController {
     @GetMapping("/quizzes")
     public ResponseEntity<?> listQuizzes(){
         try {
-            List<Quiz> quizzes =quizService.listQuizzes();
-            List<QuizDTO> quizDTOs= modelMapper.map(quizzes,List.class);
-            return new ResponseEntity<>(quizDTOs, HttpStatus.OK);
+            List<Quiz> quizzes = quizService.listQuizzes();
+            List<QuizDTO> quizzesDTOs = modelMapper.map(quizzes,List.class);
+            return new ResponseEntity<>(quizzesDTOs, HttpStatus.OK);
         }
         catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
