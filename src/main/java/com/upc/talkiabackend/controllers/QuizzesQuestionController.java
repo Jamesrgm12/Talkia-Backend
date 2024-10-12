@@ -17,10 +17,16 @@ public class QuizzesQuestionController {
     @Autowired
     private QuizzesQuestionService qqService;
 
-    @PutMapping("/quizzesQuestion/answerQuestion/{qqId}/{userAnswer}")
     @PreAuthorize("hasRole('USER')")
-    public String answerQuestion(@PathVariable int qqId, @PathVariable String userAnswer){
-        return qqService.answerQuestion(qqId, userAnswer);
+    @PutMapping("/quizzesQuestion/answerQuestion/{qqId}/{userAnswer}")
+    public ResponseEntity<?> answerQuestion(@PathVariable int qqId, @PathVariable String userAnswer){
+        try {
+            String answer = qqService.answerQuestion(qqId, userAnswer);
+            return new ResponseEntity<>(answer, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PreAuthorize("hasRole('USER')")

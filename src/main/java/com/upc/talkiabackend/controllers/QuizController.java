@@ -21,18 +21,29 @@ public class QuizController {
 
     private final ModelMapper modelMapper=new ModelMapper();
 
-    @GetMapping("/quizzes")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public List<QuizDTO> listQuizzes(){
-        List<Quiz> quizzes =quizService.listQuizzes();
-        List<QuizDTO> quizzesDTOs= modelMapper.map(quizzes,List.class);
-        return quizzesDTOs;
+    @GetMapping("/quizzes")
+    public ResponseEntity<?> listQuizzes(){
+        try {
+            List<Quiz> quizzes =quizService.listQuizzes();
+            List<QuizDTO> quizDTOs= modelMapper.map(quizzes,List.class);
+            return new ResponseEntity<>(quizDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @PostMapping("/quiz/{userId}")
     @PreAuthorize("hasRole('USER')")
-    public Quiz insertQuiz(@PathVariable int userId){
-        return quizService.insertQuiz(userId);
+    @PostMapping("/quiz/{userId}")
+    public ResponseEntity<String> insertQuiz(@PathVariable int userId){
+        try {
+            quizService.insertQuiz(userId);
+            return new ResponseEntity<>("Quiz asignado correctamente",HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
