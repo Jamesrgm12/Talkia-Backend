@@ -5,6 +5,7 @@ import com.upc.talkiabackend.entities.Quiz;
 import com.upc.talkiabackend.services.QuizService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class QuizController {
     ModelMapper modelMapper=new ModelMapper();
 
     @GetMapping("/quizzes")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public List<QuizDTO> listQuizzes(){
         List<Quiz> quizzes =quizService.listQuizzes();
         List<QuizDTO> quizzesDTOs= modelMapper.map(quizzes,List.class);
@@ -25,6 +27,7 @@ public class QuizController {
     }
 
     @PostMapping("/quiz/{userId}")
+    @PreAuthorize("hasRole('USER')")
     public Quiz insertQuiz(@PathVariable int userId){
         return quizService.insertQuiz(userId);
     }
