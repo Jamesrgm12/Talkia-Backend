@@ -1,5 +1,6 @@
 package com.upc.talkiabackend.servicesImpl;
 
+import com.upc.talkiabackend.dtos.queries.ShowQuestionsByQuizDTO;
 import com.upc.talkiabackend.entities.Question;
 import com.upc.talkiabackend.entities.QuizzesQuestion;
 import com.upc.talkiabackend.repositories.AnswerRepository;
@@ -97,4 +98,29 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
         }
         return correctAnswers * 1.0 / totalQuestions;
     }
+    @Override
+    public Integer getSecondAttemptCorrectAnswers(int quizId) {
+        return qqRepository.getSecondAttemptCorrectAnswers(quizId);
+    }
+
+    @Override
+    public Integer getCorrectAnswersCount(int quizId) {
+        return qqRepository.getCorrectAnswersCount(quizId);
+    }
+
+    @Override
+    public Double getPercentageCorrectAnswers(int quizId) {
+        double correctAnswers = 1.0 * qqRepository.getCorrectAnswersCount(quizId);
+
+        return correctAnswers/4.0;
+    }
+
+    @Override
+    public List<ShowQuestionsByQuizDTO> listQuestionsByQuizId(int quizId){
+        return qqRepository.listQuestionsByQuizId(quizId);
+
+    }
+
+
+
 }
