@@ -21,6 +21,7 @@ public class QuizController {
 
     private final ModelMapper modelMapper=new ModelMapper();
 
+
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/quizzes")
     public ResponseEntity<?> listQuizzes(){
