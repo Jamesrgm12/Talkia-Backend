@@ -7,4 +7,5 @@ import java.util.List;
 public interface QuizService {
     public Quiz insertQuiz(int userId);
     public List<Quiz> listQuizzes();
+    public List<Quiz> listQuizzesByUserId(int userId);
 }

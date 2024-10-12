@@ -13,13 +13,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class QuizzesQuestionController {
+
     @Autowired
     private QuizzesQuestionService qqService;
+
     @PutMapping("/quizzesQuestion/answerQuestion/{qqId}/{userAnswer}")
     @PreAuthorize("hasRole('USER')")
     public String answerQuestion(@PathVariable int qqId, @PathVariable String userAnswer){
         return qqService.answerQuestion(qqId, userAnswer);
     }
+
     @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/getAveragePointsByUser/{userId}")
     public ResponseEntity<?> getAveragePoints(@PathVariable int userId) {
@@ -55,6 +58,7 @@ public class QuizzesQuestionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/getSecondAttemptCorrect/{quizId}")
     public ResponseEntity<?> getSecondAttemptCorrectAnswers(@PathVariable int quizId){

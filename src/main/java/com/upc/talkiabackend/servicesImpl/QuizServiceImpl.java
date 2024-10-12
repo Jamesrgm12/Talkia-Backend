@@ -64,4 +64,9 @@ public class QuizServiceImpl implements QuizService {
     public List<Quiz> listQuizzes() {
         return quizRepository.findAll();
     }
+
+    @Override
+    public List<Quiz> listQuizzesByUserId(int userId) {
+        return quizRepository.listQuizzesByUserId(userId);
+    }
 }
