@@ -22,7 +22,7 @@ public class AnswerController {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/answers/listAnswersByQuestionUser/{questionId}")
     public ResponseEntity<?> listAnswerByQuestionUser(@PathVariable int questionId) {
         try {
