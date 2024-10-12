@@ -35,6 +35,7 @@ public class QuizController {
         return quizService.insertQuiz(userId);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/quizzes/{userId}")
     public ResponseEntity<?> listQuizzesByUserId(@PathVariable int userId) {
         try {
