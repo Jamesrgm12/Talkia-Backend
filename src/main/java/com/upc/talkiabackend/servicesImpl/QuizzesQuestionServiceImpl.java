@@ -77,4 +77,24 @@ public class QuizzesQuestionServiceImpl implements QuizzesQuestionService {
 
         return "Has llegado al límite de intentos permitidos";
     }
+    @Override
+    public Double getAveragePoints(int userId) {
+        return qqRepository.getAveragePoints(userId);
+    }
+
+    @Override
+    public Long getTotalQuizzesCompleted(int userId) {
+        return qqRepository.getTotalQuizzesCompleted(userId);
+    }
+
+    @Override
+    public Double getAverageCorrectAnswers(int userId) {
+        Long totalQuestions = qqRepository.getTotalQuestions(userId);
+        Long correctAnswers = qqRepository.getTotalCorrectAnswers(userId);
+
+        if (totalQuestions == 0) {
+            return 0.0;
+        }
+        return correctAnswers * 1.0 / totalQuestions;
+    }
 }
