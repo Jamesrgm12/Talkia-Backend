@@ -23,7 +23,7 @@ public class QuestionController {
     private final ModelMapper modelMapper = new ModelMapper();
 
 
-    //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/questions")
     public ResponseEntity<?> listQuestions(){
         try {
