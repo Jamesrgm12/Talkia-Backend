@@ -20,7 +20,7 @@ public class QuizzesQuestionController {
     public String answerQuestion(@PathVariable int qqId, @PathVariable String userAnswer){
         return qqService.answerQuestion(qqId, userAnswer);
     }
-
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/getAveragePointsByUser/{userId}")
     public ResponseEntity<?> getAveragePoints(@PathVariable int userId) {
         try {
@@ -32,7 +32,7 @@ public class QuizzesQuestionController {
         }
     }
 
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/listTotalQuizzesCompleted/{userId}")
     public ResponseEntity<?> getTotalQuizzesCompleted(@PathVariable int userId) {
         try {
@@ -44,7 +44,7 @@ public class QuizzesQuestionController {
         }
     }
 
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/getAvgCorrectAnswers/{userId}")
     public ResponseEntity<?> getAverageCorrectAnswers(@PathVariable int userId){
         try {
@@ -55,7 +55,7 @@ public class QuizzesQuestionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/getSecondAttemptCorrect/{quizId}")
     public ResponseEntity<?> getSecondAttemptCorrectAnswers(@PathVariable int quizId){
         try {
@@ -67,7 +67,7 @@ public class QuizzesQuestionController {
         }
     }
 
-   // @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/getCorrectAnswersCount/{quizId}")
     public ResponseEntity<?> getCorrectAnswersCount(@PathVariable int quizId){
         try {
@@ -79,7 +79,7 @@ public class QuizzesQuestionController {
         }
     }
 
-    //@PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("quizzesQuestion/getPercentageCorrectAnswers/{quizId}")
     public ResponseEntity<?> getPercentageCorrectAnswers(@PathVariable int quizId){
         try {
@@ -91,15 +91,14 @@ public class QuizzesQuestionController {
         }
     }
 
-    //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("quizzesQuestion/listQuestionsByQuiz/{quizId}")
-    public ResponseEntity<?> listQuestionsByQuizId(@PathVariable int quizId){
+    public ResponseEntity<?> listQuestionsByQuizId(@PathVariable int quizId) {
         try {
             List<ShowQuestionsByQuizDTO> questionDTOs = qqService.listQuestionsByQuizId(quizId);
             return new ResponseEntity<>(questionDTOs, HttpStatus.OK);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-
+    }
 }
