@@ -20,8 +20,8 @@ public class QuizController {
     @GetMapping("/quizzes")
     public List<QuizDTO> listQuizzes(){
         List<Quiz> quizzes =quizService.listQuizzes();
-        List<QuizDTO> quizDTOs= modelMapper.map(quizzes,List.class);
-        return quizDTOs;
+        List<QuizDTO> quizzesDTOs= modelMapper.map(quizzes,List.class);
+        return quizzesDTOs;
     }
 
     @PostMapping("/quiz/{userId}")
