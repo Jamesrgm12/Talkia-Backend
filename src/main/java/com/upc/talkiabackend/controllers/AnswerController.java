@@ -48,7 +48,7 @@ public class AnswerController {
     }
 
     @GetMapping("/answers/listAnswersByQuestionAdmin/{questionId}")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(@PathVariable int questionId) {
         return answerService.listAnswerByQuestionAdmin(questionId);
     }
