@@ -1,5 +1,6 @@
 package com.upc.talkiabackend.controllers;
 
+import com.upc.talkiabackend.dtos.QuestionDTO;
 import com.upc.talkiabackend.entities.Question;
 import com.upc.talkiabackend.services.QuestionService;
 import org.modelmapper.ModelMapper;
@@ -36,7 +37,7 @@ public class QuestionController {
         }
 
     }
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/question")
     public ResponseEntity<?> insertQuestion(@RequestBody QuestionDTO questionDTO){
         try {
