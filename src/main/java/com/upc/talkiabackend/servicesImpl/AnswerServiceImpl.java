@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.servicesImpl;
 
 import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionUserDTO;
+import com.upc.talkiabackend.entities.Answer;
 import com.upc.talkiabackend.repositories.AnswerRepository;
 import com.upc.talkiabackend.services.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,9 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(int questionId) {
         return answerRepository.listAnswerByQuestionUser(questionId);
+    }
+    @Override
+    public Answer insertAnswer(Answer answer){
+        return answerRepository.save(answer);
     }
 }
