@@ -1,5 +1,6 @@
 package com.upc.talkiabackend.controllers;
 
+import com.upc.talkiabackend.dtos.AnswerDTO;
 import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionUserDTO;
 import com.upc.talkiabackend.entities.Answer;
 import com.upc.talkiabackend.services.AnswerService;
