@@ -1,5 +1,6 @@
 package com.upc.talkiabackend.repositories;
 
+import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionAdminDTO;
 import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionUserDTO;
 import com.upc.talkiabackend.entities.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,4 +16,7 @@ public interface AnswerRepository extends JpaRepository<Answer, Integer> {
     Answer getCorrectAnswerByQuestionId(@Param("questionId") int questionId);
     @Query("select new com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionUserDTO(a.id, a.description) from Answer a where a.question.id=:questionId")
     List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(@Param("questionId") int questionId);
+    @Query("select new com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionAdminDTO(a.id, a.description, a.isCorrect) from Answer a where a.question.id=:questionId")
+    List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(@Param("questionId") int questionId);
+
 }

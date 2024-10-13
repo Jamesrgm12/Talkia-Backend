@@ -1,5 +1,6 @@
 package com.upc.talkiabackend.servicesImpl;
 
+import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionAdminDTO;
 import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionUserDTO;
 import com.upc.talkiabackend.entities.Answer;
 import com.upc.talkiabackend.repositories.AnswerRepository;
@@ -22,4 +23,9 @@ public class AnswerServiceImpl implements AnswerService {
     public Answer insertAnswer(Answer answer){
         return answerRepository.save(answer);
     }
+    @Override
+    public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(int questionId) {
+        return answerRepository.listAnswerByQuestionAdmin(questionId);
+    }
+
 }

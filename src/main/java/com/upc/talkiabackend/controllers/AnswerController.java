@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.controllers;
 
 import com.upc.talkiabackend.dtos.AnswerDTO;
+import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionAdminDTO;
 import com.upc.talkiabackend.dtos.queries.ShowAnswersByQuestionUserDTO;
 import com.upc.talkiabackend.entities.Answer;
 import com.upc.talkiabackend.services.AnswerService;
@@ -44,5 +45,11 @@ public class AnswerController {
         catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @GetMapping("/answers/listAnswersByQuestionAdmin/{questionId}")
+    //@PreAuthorize("hasRole('ADMIN')")
+    public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(@PathVariable int questionId) {
+        return answerService.listAnswerByQuestionAdmin(questionId);
     }
 }
