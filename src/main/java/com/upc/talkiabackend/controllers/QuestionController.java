@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,6 +35,19 @@ public class QuestionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 
+    }
+    //@PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/question")
+    public ResponseEntity<?> insertQuestion(@RequestBody QuestionDTO questionDTO){
+        try {
+            Question question = modelMapper.map(questionDTO, Question.class);
+            question = questionService.insertQuestion(question);
+            questionDTO = modelMapper.map(question, QuestionDTO.class);
+            return new ResponseEntity<>(questionDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 
