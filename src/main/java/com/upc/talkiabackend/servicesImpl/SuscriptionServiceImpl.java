@@ -17,6 +17,9 @@ public class SuscriptionServiceImpl implements SuscriptionService {
     public List<Suscription> listSuscriptions() {
         return suscriptionRepository.findAll();
     }
-
+    @Override
+    public Suscription getSuscriptionById(int susId) {
+        return suscriptionRepository.getSuscriptionById(susId);
+    }
 
 }

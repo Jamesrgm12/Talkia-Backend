@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SuscriptionRepository extends JpaRepository<Suscription, Integer> {
+
+    public Suscription getSuscriptionById(int susId);
+
 }
