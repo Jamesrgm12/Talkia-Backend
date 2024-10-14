@@ -51,6 +51,8 @@ public class QuestionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+
     @GetMapping("/level/{level}")
     public ResponseEntity<?> listQuestionsByLevel(@PathVariable String level){
         try {
