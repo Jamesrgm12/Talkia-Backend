@@ -1,5 +1,6 @@
 package com.upc.talkiabackend.servicesImpl;
 
+import com.upc.talkiabackend.dtos.queries.ShowQuestionByLevelDTO;
 import com.upc.talkiabackend.entities.Question;
 import com.upc.talkiabackend.repositories.QuestionRepository;
 import com.upc.talkiabackend.services.QuestionService;
@@ -26,6 +27,10 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.save(question);
     }
 
+    @Override
+    public List<ShowQuestionByLevelDTO> listQuestionsByLevel(String level) {
+        return questionRepository.listQuestionsByLevel(level);
+    }
 
 
 }

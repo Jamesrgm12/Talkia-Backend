@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.controllers;
 
 import com.upc.talkiabackend.dtos.QuestionDTO;
+import com.upc.talkiabackend.dtos.queries.ShowQuestionByLevelDTO;
 import com.upc.talkiabackend.entities.Question;
 import com.upc.talkiabackend.services.QuestionService;
 import org.modelmapper.ModelMapper;
@@ -45,6 +46,16 @@ public class QuestionController {
             question = questionService.insertQuestion(question);
             questionDTO = modelMapper.map(question, QuestionDTO.class);
             return new ResponseEntity<>(questionDTO, HttpStatus.CREATED);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @GetMapping("/level/{level}")
+    public ResponseEntity<?> listQuestionsByLevel(@PathVariable String level){
+        try {
+            List<ShowQuestionByLevelDTO> questionDTOs = questionService.listQuestionsByLevel(level);
+            return new ResponseEntity<>(questionDTOs, HttpStatus.OK);
         }
         catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
