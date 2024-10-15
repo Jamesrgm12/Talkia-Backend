@@ -1,5 +1,6 @@
 package com.upc.talkiabackend.controllers;
 
+import com.upc.talkiabackend.dtos.UserDTO;
 import com.upc.talkiabackend.entities.User;
 import com.upc.talkiabackend.services.UserService;
 import org.modelmapper.ModelMapper;
