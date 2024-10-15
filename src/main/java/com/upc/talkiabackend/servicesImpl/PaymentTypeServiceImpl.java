@@ -17,5 +17,9 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
     public List<PaymentType> listPaymentTypes() {
         return paymentTypeRepository.findAll();
     }
+    @Override
+    public PaymentType getPaymentTypeById(int id) {
+        return paymentTypeRepository.findById(id).get();
+    }
 
 }
