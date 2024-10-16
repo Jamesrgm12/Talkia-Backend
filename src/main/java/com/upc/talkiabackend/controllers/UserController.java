@@ -39,6 +39,7 @@ public class UserController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users")
     public ResponseEntity<?> listUsers(){
         try {
@@ -51,6 +52,7 @@ public class UserController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users_register_date/{startDate}/{endDate}")
     public ResponseEntity<?> listUsersByRegisterDate(@PathVariable LocalDate startDate,@PathVariable LocalDate endDate){
         try {
@@ -63,6 +65,7 @@ public class UserController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users_status/{status}")
     public ResponseEntity<?> listUsersByStatus(@PathVariable String status){
         try {
