@@ -21,6 +21,7 @@ public class UserController {
     private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+
     private final ModelMapper modelMapper = new ModelMapper();
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
