@@ -14,9 +14,8 @@ public class TestController {
         return "Bienvenido a talkia estimado estudiante";
     }
 
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin")
-    //@PreAuthorize("hasRole('ADMIN')")
     public String adminEndpoint() {
         return "Bienvenido a talkia estimado administrador";
     }
