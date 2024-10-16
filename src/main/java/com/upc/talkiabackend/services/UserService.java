@@ -10,5 +10,6 @@ public interface UserService {
     public User insertUser(User user);
     public List<User> listUsers();
     public List<User> listUsersByRegisterDate(LocalDate startDate, LocalDate endDate);
+    public List<User> listUsersByStatus(String status);
 
 }

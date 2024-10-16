@@ -38,5 +38,10 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.listUsersByRegisterDate(startDateTime, endDateTime);
     }
+    @Override
+    public List<User> listUsersByStatus(String status){
+        return userRepository.listUsersByStatus(status);
+    }
+
 
 }

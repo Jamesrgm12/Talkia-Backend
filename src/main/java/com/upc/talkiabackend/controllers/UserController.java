@@ -62,4 +62,17 @@ public class UserController {
         }
     }
 
+    @GetMapping("/users_status/{status}")
+    public ResponseEntity<?> listUsersByStatus(@PathVariable String status){
+        try {
+            List<User>users =  userService.listUsersByStatus(status);
+            List<UserDTO> userDTOS = modelMapper.map(users, List.class);
+            return new ResponseEntity<>(userDTOS, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 }
