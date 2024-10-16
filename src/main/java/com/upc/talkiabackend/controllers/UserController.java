@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -41,6 +42,18 @@ public class UserController {
     public ResponseEntity<?> listUsers(){
         try {
             List<User> users = userService.listUsers();
+            List<UserDTO> userDTOS = modelMapper.map(users, List.class);
+            return new ResponseEntity<>(userDTOS, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/users_register_date/{startDate}/{endDate}")
+    public ResponseEntity<?> listUsersByRegisterDate(@PathVariable LocalDate startDate,@PathVariable LocalDate endDate){
+        try {
+            List<User>users = userService.listUsersByRegisterDate(startDate, endDate);
             List<UserDTO> userDTOS = modelMapper.map(users, List.class);
             return new ResponseEntity<>(userDTOS, HttpStatus.OK);
         }

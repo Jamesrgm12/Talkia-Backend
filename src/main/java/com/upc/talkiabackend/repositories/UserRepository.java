@@ -14,4 +14,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUserName(String username);
     User getUserById(int userId);
+    @Query("select u from User u where u.iCreatedAt between :startDate and :endDate")
+    List<User> listUsersByRegisterDate(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
+
 }
