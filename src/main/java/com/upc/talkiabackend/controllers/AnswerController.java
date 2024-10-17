@@ -52,6 +52,7 @@ public class AnswerController {
     public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(@PathVariable int questionId) {
         return answerService.listAnswerByQuestionAdmin(questionId);
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/answer")
     public ResponseEntity<?> updateAnswer(@RequestBody AnswerDTO answerDTO){
         try {
