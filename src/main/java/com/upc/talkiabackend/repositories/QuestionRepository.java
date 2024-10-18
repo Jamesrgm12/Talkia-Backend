@@ -13,4 +13,5 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
     @Query("select new com.upc.talkiabackend.dtos.queries.ShowQuestionByLevelDTO(q.description, q.iCreatedAt, q.iModifiedAt)from Question q where q.level.level=:level")
     List<ShowQuestionByLevelDTO> listQuestionsByLevel(String level);
 
+
 }

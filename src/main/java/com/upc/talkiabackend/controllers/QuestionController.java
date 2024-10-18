@@ -22,6 +22,20 @@ public class QuestionController {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
+    //@PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/question")
+    public ResponseEntity<?> updateQuestion(@RequestBody QuestionDTO questionDTO){
+        try {
+            Question question = modelMapper.map(questionDTO, Question.class);
+            question = questionService.updateQuestion(question);
+            questionDTO = modelMapper.map(question, QuestionDTO.class);
+            return new ResponseEntity<>(questionDTO, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/questions")
