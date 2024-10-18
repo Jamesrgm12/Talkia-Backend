@@ -33,6 +33,17 @@ public class ContentController {
     }
   }
   @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+  @GetMapping("/content_theme_level/{level}/{theme}")
+  public ResponseEntity<?> listContentByLevelsAndTheme(@PathVariable String level, @PathVariable String theme) {
+    try {
+      List<ShowContentByFilterDTO> contentDTOs = contentService.listContentByLevelsAndTheme(level, theme);
+      return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   @GetMapping("/content_level_type/{level}/{type}")
   public ResponseEntity<?> listContentByLevelsAndTypes(@PathVariable String level, @PathVariable String type) {
     try {

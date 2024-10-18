@@ -20,4 +20,8 @@ public class ContentServiceImpl implements ContentService {
   public List<ShowContentByFilterDTO> listContentByLevelsAndTypes(String level, String type) {
     return contentRepository.listContentByLevelsAndTypes(level, type);
   }
+  @Override
+  public List<ShowContentByFilterDTO> listContentByLevelsAndTheme(String level, String theme) {
+    return contentRepository.listContentByLevelsAndTheme(level, theme);
+  }
 }

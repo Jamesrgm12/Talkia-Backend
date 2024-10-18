@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface ContentRepository {
   @Query("select new com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO(c.title, c.year) from Content c " +
+    "join c.levels l where l.level = :level and c.theme =:theme")
+  public List<ShowContentByFilterDTO>  listContentByLevelsAndTheme(@Param("level") String level, @Param("theme") String theme);
+  @Query("select new com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO(c.title, c.year) from Content c " +
     "join c.levels l where l.level = :level and c.type =:type")
   public List<ShowContentByFilterDTO>  listContentByLevelsAndTypes(@Param("level") String level, @Param("type") String type);
   @Query("select new com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO(c.title, c.year) from Content c " +
