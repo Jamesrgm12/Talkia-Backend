@@ -39,7 +39,7 @@ public class UserController {
         }
     }
 
-    //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PutMapping("/user")
     public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO){
         try {
