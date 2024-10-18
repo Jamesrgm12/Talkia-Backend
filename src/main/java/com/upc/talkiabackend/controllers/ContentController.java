@@ -32,4 +32,15 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+  @GetMapping("/content_level_type/{level}/{type}")
+  public ResponseEntity<?> listContentByLevelsAndTypes(@PathVariable String level, @PathVariable String type) {
+    try {
+      List<ShowContentByFilterDTO> contentDTOs = contentService.listContentByLevelsAndTypes(level, type);
+      return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
 }
