@@ -52,4 +52,18 @@ public class AnswerController {
     public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(@PathVariable int questionId) {
         return answerService.listAnswerByQuestionAdmin(questionId);
     }
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/answer")
+    public ResponseEntity<?> updateAnswer(@RequestBody AnswerDTO answerDTO){
+        try {
+            Answer answer = modelMapper.map(answerDTO, Answer.class);
+            answer = answerService.updateAnswer(answer);
+            answerDTO = modelMapper.map(answer,AnswerDTO.class);
+            return new ResponseEntity<>(answerDTO, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }

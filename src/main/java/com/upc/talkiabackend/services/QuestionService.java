@@ -9,5 +9,5 @@ public interface QuestionService {
     public List<Question> listQuestions();
     public Question insertQuestion(Question question);
     List<ShowQuestionByLevelDTO> listQuestionsByLevel(String level);
-
+    public Question updateQuestion(Question question);
 }
