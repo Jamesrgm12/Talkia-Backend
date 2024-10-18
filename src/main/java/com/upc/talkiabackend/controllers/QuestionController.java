@@ -22,7 +22,7 @@ public class QuestionController {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/question")
     public ResponseEntity<?> updateQuestion(@RequestBody QuestionDTO questionDTO){
         try {
