@@ -39,6 +39,20 @@ public class UserController {
         }
     }
 
+    //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PutMapping("/user")
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO){
+        try {
+            User user = modelMapper.map(userDTO, User.class);
+            user = userService.updateUser(user);
+            userDTO = modelMapper.map(user, UserDTO.class);
+            return new ResponseEntity<>(userDTO, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users")
     public ResponseEntity<?> listUsers(){
