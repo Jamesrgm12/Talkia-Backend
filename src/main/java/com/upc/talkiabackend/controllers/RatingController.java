@@ -22,6 +22,7 @@ public class RatingController {
 
   private final ModelMapper modelMapper = new ModelMapper();
 
+
   @PreAuthorize("hasRole('USER')")
   @PostMapping("/rating/{id_content}/{id_user}/{score}")
   public ResponseEntity<?> insertRating(@PathVariable int id_content, @PathVariable int id_user,
