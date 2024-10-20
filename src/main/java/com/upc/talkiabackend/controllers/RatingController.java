@@ -37,6 +37,7 @@ public class RatingController {
     }
   }
 
+
   @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   @GetMapping("/ratingsContentByScore")
   public ResponseEntity<?> listContentOrderByScore(){
