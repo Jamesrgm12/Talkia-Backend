@@ -20,4 +20,7 @@ public interface ContentRepository extends JpaRepository<Content, Integer> {
   @Query("select new com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO(c.title, c.year) from Content c " +
     "join c.levels l where l.level = :level")
   public List<ShowContentByFilterDTO> listContentByLevels(@Param("level") String level);
+  @Query("select new com.upc.talkia_proyect.dtos.queries.ShowContentByFilterDTO(c.title,c.year)" +
+          "from Content c where c.title like %:title%")
+  public List<ShowContentByFilterDTO> listContentByTitle(@Param("title")String title);
 }

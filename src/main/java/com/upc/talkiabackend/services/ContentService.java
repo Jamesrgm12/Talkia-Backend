@@ -10,4 +10,5 @@ public interface ContentService {
   public List<ShowContentByFilterDTO> listContentByLevelsAndTypes(String level, String type);
   public List<ShowContentByFilterDTO> listContentByLevelsAndTheme(String level, String theme);
   public List<Content> listAllContent();
+  public List<ShowContentByFilterDTO> listContentByTitle(String title);
 }

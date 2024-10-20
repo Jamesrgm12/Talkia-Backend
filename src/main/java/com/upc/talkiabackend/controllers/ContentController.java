@@ -71,4 +71,15 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
+
+  @GetMapping("/content/title/{title}")
+  public ResponseEntity<?> listContentByTitle(@PathVariable String title) {
+    try {
+      List<ShowContentByFilterDTO> contentDTOs = contentService.listContentByTitle(title);
+      return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
 }
