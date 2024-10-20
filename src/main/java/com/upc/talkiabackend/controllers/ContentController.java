@@ -58,6 +58,7 @@ public class ContentController {
     }
   }
 
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   @GetMapping("/contents")
   public ResponseEntity<?> listContent() {
     try {
