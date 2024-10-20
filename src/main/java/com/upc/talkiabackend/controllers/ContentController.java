@@ -72,6 +72,7 @@ public class ContentController {
     }
   }
 
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   @GetMapping("/content/title/{title}")
   public ResponseEntity<?> listContentByTitle(@PathVariable String title) {
     try {
