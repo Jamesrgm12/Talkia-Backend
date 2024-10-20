@@ -37,5 +37,17 @@ public class RatingController {
     }
   }
 
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+  @GetMapping("/ratingsContentByScore")
+  public ResponseEntity<?> listContentOrderByScore(){
+    try {
+      List<ShowRatingByContentDTO> ratingDTOs = ratingService.listContentOrderByScore();
+      return new ResponseEntity<>(ratingDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
+
 
 }

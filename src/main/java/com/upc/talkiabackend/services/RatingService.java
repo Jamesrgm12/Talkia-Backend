@@ -10,5 +10,5 @@ import java.util.List;
 @Service
 public interface RatingService {
   public Rating insertRating(int id_content, int id_user, int rating);
-
+  public List<ShowRatingByContentDTO> listContentOrderByScore();
 }

@@ -36,4 +36,9 @@ public class RatingServiceImpl implements RatingService {
     return ratingRepository.save(rating);
   }
 
+  @Override
+  public List<ShowRatingByContentDTO> listContentOrderByScore(){
+    return ratingRepository.listContentOrderByScore();
+  }
+
 }
