@@ -83,4 +83,14 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
+  @GetMapping("/content_type/{type}")
+  public ResponseEntity<?> listContentByTypes(@PathVariable String type) {
+    try {
+      List<ShowContentByFilterDTO> contentDTOs = contentService.listContentByTypes(type);
+      return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
 }

@@ -33,4 +33,8 @@ public class ContentServiceImpl implements ContentService {
   public List<ShowContentByFilterDTO> listContentByTitle(String title){
     return contentRepository.listContentByTitle(title);
   }
+  @Override
+  public List<ShowContentByFilterDTO> listContentByTypes(String type) {
+    return contentRepository.listContentByTypes(type);
+  }
 }
