@@ -1,6 +1,8 @@
 package com.upc.talkiabackend.controllers;
 
+import com.upc.talkiabackend.dtos.ContentDTO;
 import com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO;
+import com.upc.talkiabackend.entities.Content;
 import com.upc.talkiabackend.services.ContentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +51,19 @@ public class ContentController {
   public ResponseEntity<?> listContentByLevelsAndTypes(@PathVariable String level, @PathVariable String type) {
     try {
       List<ShowContentByFilterDTO> contentDTOs = contentService.listContentByLevelsAndTypes(level, type);
+      return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
+
+  @GetMapping("/contents")
+  public ResponseEntity<?> listContent() {
+    try {
+      List<Content> contents = contentService.listAllContent();
+      ModelMapper modelMapper = new ModelMapper();
+      List<ContentDTO> contentDTOs = modelMapper.map(contents, List.class);
       return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
     }
     catch (Exception e){
