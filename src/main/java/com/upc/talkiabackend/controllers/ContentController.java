@@ -95,7 +95,7 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
-  //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   @GetMapping("/content_fechaAsc")
   public ResponseEntity<?> listContentOrderByDateOfPublicationAsc() {
     try {
@@ -107,7 +107,7 @@ public class ContentController {
     }
   }
 
-  //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   @GetMapping("/content_fechaDesc")
   public ResponseEntity<?> listContentOrderByDateOfPublicationDesc() {
     try {
