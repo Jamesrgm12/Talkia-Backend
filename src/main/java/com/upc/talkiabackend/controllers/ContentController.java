@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.controllers;
 
 import com.upc.talkiabackend.dtos.ContentDTO;
+import com.upc.talkiabackend.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO;
 import com.upc.talkiabackend.entities.Content;
 import com.upc.talkiabackend.services.ContentService;
@@ -94,4 +95,31 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
+  //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+  @GetMapping("/content_fechaAsc")
+  public ResponseEntity<?> listContentOrderByDateOfPublicationAsc() {
+    try {
+      List<ShowContentByDayDTO> contentDTOs = contentService.listContentOrderByDateOfPublicationAsc();
+      return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
+
+  //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+  @GetMapping("/content_fechaDesc")
+  public ResponseEntity<?> listContentOrderByDateOfPublicationDesc() {
+    try {
+      List<ShowContentByDayDTO> contentDTOs = contentService.listContentOrderByDateOfPublicationDesc();
+      return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
+
+
+
+
 }
