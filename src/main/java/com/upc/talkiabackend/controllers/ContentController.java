@@ -116,6 +116,7 @@ public class ContentController {
     }
   }
 
+  @PreAuthorize("hasRole('ADMIN')")
   @PostMapping("/content")
   public ResponseEntity<?> insertContent(@RequestBody ContentDTO contentDTO){
     try {
