@@ -31,6 +31,7 @@ public class UserContentController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/user_content/listar")
     public ResponseEntity<?> listUserContent() {
         try {
@@ -41,6 +42,7 @@ public class UserContentController {
         }
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/content_history_by_user/{userId}")
     public ResponseEntity<?> ListUserContentByUser(@PathVariable int userId) {
         try {
