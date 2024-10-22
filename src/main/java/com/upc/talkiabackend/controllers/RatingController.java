@@ -50,6 +50,7 @@ public class RatingController {
     }
   }
 
+  @PreAuthorize("hasRole('ADMIN')")
   @GetMapping("/ratingsByUser/{userId}")
   public ResponseEntity<?> listRatingByUser(@PathVariable int userId){
     try{
