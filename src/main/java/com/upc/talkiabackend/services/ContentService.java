@@ -15,5 +15,5 @@ public interface ContentService {
   public List<ShowContentByFilterDTO> listContentByTypes(String type);
   public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc();
   public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc();
-
+  public Content insertContent(Content content);
 }

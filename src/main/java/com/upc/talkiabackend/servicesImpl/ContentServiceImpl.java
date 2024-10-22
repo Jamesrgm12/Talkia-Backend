@@ -47,4 +47,9 @@ public class ContentServiceImpl implements ContentService {
   public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc(){
     return contentRepository.listContentOrderByDateOfPublicationDesc();
   }
+
+  @Override
+  public Content insertContent(Content content) {
+    return contentRepository.save(content);
+  }
 }
