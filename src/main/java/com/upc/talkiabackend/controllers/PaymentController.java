@@ -22,6 +22,7 @@ public class PaymentController {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/paymentbyyear/{userId}/{year}")
     public ResponseEntity<?> listPaymentsByYear( @PathVariable Integer userId, @PathVariable Integer year) {
         try {
