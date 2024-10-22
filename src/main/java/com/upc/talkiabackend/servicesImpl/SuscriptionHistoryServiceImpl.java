@@ -74,6 +74,8 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
         return "Se ha confirmado exitosamente la suscripción al plan ";  //+ sus.getName();
 
 
+
+
     }
 
     @Override
