@@ -4,6 +4,7 @@ import com.upc.talkiabackend.services.UserContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ public class UserContentController {
     @Autowired
     private UserContentService userContentService;
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/user_content/{contentId}/{userId}")
     public ResponseEntity<?> InsertUserContent(@PathVariable(name = "contentId") Integer contentId,
                                                @PathVariable(name = "userId") Integer userId) {
