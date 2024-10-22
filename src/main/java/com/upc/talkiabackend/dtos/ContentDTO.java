@@ -27,3 +27,4 @@ public class ContentDTO {
     private String iModifiedBy;
     private Set<Level> levels = new HashSet<>();
 }
+
