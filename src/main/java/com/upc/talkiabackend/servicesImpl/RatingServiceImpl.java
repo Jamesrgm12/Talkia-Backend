@@ -41,4 +41,8 @@ public class RatingServiceImpl implements RatingService {
     return ratingRepository.listContentOrderByScore();
   }
 
+  @Override
+  public List<Rating> listRatingByUser(int userId){
+    return ratingRepository.listRatingByUser(userId);
+  }
 }

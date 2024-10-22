@@ -50,5 +50,16 @@ public class RatingController {
     }
   }
 
+  @GetMapping("/ratingsByUser/{userId}")
+  public ResponseEntity<?> listRatingByUser(@PathVariable int userId){
+    try{
+      List<Rating> ratings = ratingService.listRatingByUser(userId);
+      List<RatingDTO> ratingsDTO = modelMapper.map(ratings,List.class);
+      return new ResponseEntity<>(ratingsDTO, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
 
 }
