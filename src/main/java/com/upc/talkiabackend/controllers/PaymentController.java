@@ -33,4 +33,14 @@ public class PaymentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping("/paymentsbyyear/{userId}")
+    public ResponseEntity<?> listPaymentsByUser(@PathVariable Integer userId){
+        try {
+            List<ShowYearlyPaymentsDTO> paymentsDTOs = paymentService.listPaymentsByUser(userId);
+            return new ResponseEntity<>(paymentsDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PaymentService {
     public List<ShowYearlyPaymentsDTO> listPaymentsByYear(Integer userId, Integer year);
+    public List<ShowYearlyPaymentsDTO> listPaymentsByUser(Integer userId);
+
 }

@@ -17,4 +17,8 @@ public class PaymentServiceImpl implements PaymentService {
     public List<ShowYearlyPaymentsDTO> listPaymentsByYear(Integer userId, Integer year) {
         return paymentRepository.listPaymentsByYear(userId, year);
     }
+    @Override
+    public List<ShowYearlyPaymentsDTO> listPaymentsByUser(Integer userId) {
+        return paymentRepository.listPaymentsByUser(userId);
+    }
 }
