@@ -1,6 +1,8 @@
 package com.upc.talkiabackend.controllers;
 
 import com.upc.talkiabackend.dtos.QuizDTO;
+import com.upc.talkiabackend.dtos.queries.AveragePointsLevelDTO;
+import com.upc.talkiabackend.dtos.queries.QuizzesPerLevelDTO;
 import com.upc.talkiabackend.entities.Quiz;
 import com.upc.talkiabackend.services.QuizService;
 import org.modelmapper.ModelMapper;
@@ -54,6 +56,29 @@ public class QuizController {
             List<Quiz> quizzes = quizService.listQuizzesByUserId(userId);
             List<QuizDTO> quizzDTOs= modelMapper.map(quizzes,List.class);
             return new ResponseEntity<>(quizzDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/quizzes/average")
+    public ResponseEntity<?> listAveragePoints(){
+        try {
+            List<AveragePointsLevelDTO> quizzesDTOs = quizService.listAveragePoints();
+            return new ResponseEntity<>(quizzesDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+   // @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/quizzes/quantity")
+    public ResponseEntity<?> listQuizzesPerLevel(){
+        try {
+            List<QuizzesPerLevelDTO> quizzesDTOs = quizService.listQuizzesPerLevel();
+            return new ResponseEntity<>(quizzesDTOs, HttpStatus.OK);
         }
         catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());

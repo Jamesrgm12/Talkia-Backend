@@ -1,5 +1,7 @@
 package com.upc.talkiabackend.servicesImpl;
 
+import com.upc.talkiabackend.dtos.queries.AveragePointsLevelDTO;
+import com.upc.talkiabackend.dtos.queries.QuizzesPerLevelDTO;
 import com.upc.talkiabackend.entities.Question;
 import com.upc.talkiabackend.entities.Quiz;
 import com.upc.talkiabackend.entities.QuizzesQuestion;
@@ -68,5 +70,15 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public List<Quiz> listQuizzesByUserId(int userId) {
         return quizRepository.listQuizzesByUserId(userId);
+    }
+
+    @Override
+    public List<AveragePointsLevelDTO> listAveragePoints(){
+        return quizRepository.listAveragePoints();
+    }
+
+    @Override
+    public List<QuizzesPerLevelDTO> listQuizzesPerLevel(){
+        return quizRepository.listQuizzesPerLevel();
     }
 }
