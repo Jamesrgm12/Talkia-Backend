@@ -1,5 +1,7 @@
 package com.upc.talkiabackend.servicesImpl;
 
+import com.upc.talkiabackend.dtos.queries.CountHistoriesByObjectDTO;
+import com.upc.talkiabackend.dtos.queries.TotalAmountBySubTypeDTO;
 import com.upc.talkiabackend.entities.*;
 import com.upc.talkiabackend.repositories.*;
 import com.upc.talkiabackend.services.SuscriptionHistoryService;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService {
@@ -81,6 +84,14 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     @Override
     public SuscriptionsHistory getSuscriptionsHistoriesByActiveStatus(int userId){
         return shRepository.getSuscriptionsHistoriesByActiveStatus(userId);
+    }
+    public List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(LocalDate startDate, LocalDate endDate) {
+        return shRepository.countHistoriesByPaymentType(startDate, endDate);
+    }
+
+    @Override
+    public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(LocalDate startDate, LocalDate endDate) {
+        return shRepository.listTotalAmountBySubType(startDate, endDate);
     }
 
 }

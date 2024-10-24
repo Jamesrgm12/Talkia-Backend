@@ -1,14 +1,16 @@
 package com.upc.talkiabackend.controllers;
 
+import com.upc.talkiabackend.dtos.queries.CountHistoriesByObjectDTO;
+import com.upc.talkiabackend.dtos.queries.TotalAmountBySubTypeDTO;
 import com.upc.talkiabackend.services.SuscriptionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -27,5 +29,25 @@ public class SuscriptionHistoryController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping("/countHistoriesByPaymentType/{startDate}/{endDate}")
+    public ResponseEntity<?> countHistoriesByPaymentType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
+        try {
+            List<CountHistoriesByObjectDTO> historyDTOs = suscriptionHistoryService.countHistoriesByPaymentType(startDate, endDate);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
+    @GetMapping("/listTotalAmountBySubType/{startDate}/{endDate}")
+    public ResponseEntity<?> listTotalAmountBySubType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
+        try {
+            List<TotalAmountBySubTypeDTO> reportDTOs = suscriptionHistoryService.listTotalAmountBySubType(startDate, endDate);
+            return new ResponseEntity<>(reportDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
