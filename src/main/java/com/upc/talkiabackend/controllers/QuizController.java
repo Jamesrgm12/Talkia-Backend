@@ -61,7 +61,7 @@ public class QuizController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    //@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/quizzes/average")
     public ResponseEntity<?> listAveragePoints(){
         try {
@@ -73,7 +73,7 @@ public class QuizController {
         }
     }
 
-   // @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/quizzes/quantity")
     public ResponseEntity<?> listQuizzesPerLevel(){
         try {
