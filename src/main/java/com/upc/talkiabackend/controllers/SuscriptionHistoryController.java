@@ -29,6 +29,8 @@ public class SuscriptionHistoryController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/countHistoriesByPaymentType/{startDate}/{endDate}")
     public ResponseEntity<?> countHistoriesByPaymentType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
         try {
@@ -39,7 +41,7 @@ public class SuscriptionHistoryController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listTotalAmountBySubType/{startDate}/{endDate}")
     public ResponseEntity<?> listTotalAmountBySubType(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
         try {
