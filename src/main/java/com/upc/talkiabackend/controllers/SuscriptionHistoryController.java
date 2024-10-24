@@ -64,7 +64,7 @@ public class SuscriptionHistoryController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/suscriptionHistoryByPaymenyType/{paymentTypeName}")
     public ResponseEntity<?> listHistoryByPaymentType(@PathVariable String paymentTypeName) {
         try {
@@ -76,7 +76,7 @@ public class SuscriptionHistoryController {
         }
     }
 
-   // @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listHistoryByUserSuscription/{userId}/{sName}")
     public ResponseEntity<?> listHistoryByUserAndSuscription(@PathVariable int userId, @PathVariable String sName){
         try {
@@ -88,7 +88,7 @@ public class SuscriptionHistoryController {
         }
     }
 
-//@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listHistoryBySuscription/{suscriptionName}")
     public ResponseEntity<?> listHistoryBySuscription(@PathVariable String suscriptionName) {
         try {
@@ -100,7 +100,7 @@ public class SuscriptionHistoryController {
         }
     }
 
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listHistoryByPaymentTypeAndSuscription/{paymentTypeName}/{suscriptionName}")
     public ResponseEntity<?> listHistoryByPaymentTypeAndSuscription(@PathVariable String paymentTypeName, @PathVariable String suscriptionName) {
         try {
@@ -112,7 +112,7 @@ public class SuscriptionHistoryController {
         }
     }
 
-   // @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listHistoryByUserAndPayment/{userId}/{paymentTypeName}")
     public ResponseEntity<?> listHistoryByUserAndPaymentType(@PathVariable int userId, @PathVariable String paymentTypeName) {
         try {
@@ -124,7 +124,7 @@ public class SuscriptionHistoryController {
         }
     }
 
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/listHistoryByAll/{userId}/{paymentTypeName}/{suscriptionName}")
     public ResponseEntity<?> listHistoryByAllFilters(@PathVariable int userId, @PathVariable String paymentTypeName, @PathVariable String suscriptionName){
         try {
