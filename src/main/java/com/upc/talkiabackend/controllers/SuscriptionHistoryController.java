@@ -64,6 +64,76 @@ public class SuscriptionHistoryController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    //@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/suscriptionHistoryByPaymenyType/{paymentTypeName}")
+    public ResponseEntity<?> listHistoryByPaymentType(@PathVariable String paymentTypeName) {
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByPaymentType(paymentTypeName);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
+   // @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/listHistoryByUserSuscription/{userId}/{sName}")
+    public ResponseEntity<?> listHistoryByUserAndSuscription(@PathVariable int userId, @PathVariable String sName){
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByUserAndSuscription(userId, sName);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+//@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/listHistoryBySuscription/{suscriptionName}")
+    public ResponseEntity<?> listHistoryBySuscription(@PathVariable String suscriptionName) {
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryBySuscription(suscriptionName);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    //@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/listHistoryByPaymentTypeAndSuscription/{paymentTypeName}/{suscriptionName}")
+    public ResponseEntity<?> listHistoryByPaymentTypeAndSuscription(@PathVariable String paymentTypeName, @PathVariable String suscriptionName) {
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByPaymentTypeAndSuscription(paymentTypeName, suscriptionName);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+   // @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/listHistoryByUserAndPayment/{userId}/{paymentTypeName}")
+    public ResponseEntity<?> listHistoryByUserAndPaymentType(@PathVariable int userId, @PathVariable String paymentTypeName) {
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByUserAndPaymentType(userId, paymentTypeName);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    //@PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/listHistoryByAll/{userId}/{paymentTypeName}/{suscriptionName}")
+    public ResponseEntity<?> listHistoryByAllFilters(@PathVariable int userId, @PathVariable String paymentTypeName, @PathVariable String suscriptionName){
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByAllFilters(userId, paymentTypeName, suscriptionName);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
 }

@@ -27,4 +27,29 @@ public interface SuscriptionHistoryRepository extends JpaRepository<Suscriptions
     @Query("select new com.upc.talkiabackend.dtos.queries.CountHistoriesByObjectDTO(sh.payment.paymentType.name ,count(sh)) " +
             "from SuscriptionsHistory sh where sh.startDate between :startDate and :endDate group by sh.payment.paymentType.name ")
     List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    @Query("select new com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO(sh.user.name, sh.payment.id, sh.startDate, sh.payment.amount)  from SuscriptionsHistory sh where sh.payment.paymentType.name =:paymentTypeName")
+    List<HistoryByObjectDTO> listHistoryByPaymentType(@Param("paymentTypeName")String paymentTypeName);
+
+    @Query("select new com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO(sh.user.name, sh.payment.id, sh.startDate, sh.payment.amount)" +
+            "from SuscriptionsHistory sh where sh.user.id=:userId and sh.suscription.name=:suscriptionName")
+    List<HistoryByObjectDTO> listHistoryByUserAndSuscription(@Param("userId") int userId, @Param("suscriptionName") String suscriptionName);
+
+    @Query("select new com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO(sh.user.name, sh.payment.id, sh.startDate, sh.payment.amount)" +
+            "from SuscriptionsHistory sh where sh.user.id=:userId and sh.payment.paymentType.name=:paymentTypeName")
+    public List<HistoryByObjectDTO> listHistoryByUserAndPaymentType(@Param("userId") int userId, @Param("paymentTypeName")String paymentTypeName);
+
+    @Query("select new com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO(sh.user.name, sh.payment.id, sh.startDate, sh.payment.amount)" +
+            "from SuscriptionsHistory sh where sh.user.id=:userId and sh.payment.paymentType.name=:paymentTypeName and sh.suscription.name=:suscriptionName")
+    public List<HistoryByObjectDTO> listHistoryByAllFilters(@Param("userId") int userId, @Param("paymentTypeName")String paymentTypeName, @Param("suscriptionName") String suscriptionName);
+
+    @Query("select new com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO(sh.user.name, sh.payment.id, sh.startDate, sh.payment.amount)" +
+            "from SuscriptionsHistory sh where sh.payment.paymentType.name=:paymentTypeName and sh.suscription.name=:suscriptionName")
+    public List<HistoryByObjectDTO> listHistoryByPaymentTypeAndSuscription(@Param("paymentTypeName")String paymentTypeName , @Param("suscriptionName") String suscriptionName);
+
+    @Query("select new com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO(sh.user.name, sh.payment.id, sh.startDate, sh.payment.amount)" +
+            "from SuscriptionsHistory sh where sh.suscription.name =:suscriptionName")
+    public List<HistoryByObjectDTO> listHistoryBySuscription(@Param("suscriptionName") String suscriptionName);
+
+
+
 }

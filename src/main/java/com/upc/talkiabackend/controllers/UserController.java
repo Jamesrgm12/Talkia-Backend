@@ -91,7 +91,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/user_by_username/{username}")
     public ResponseEntity<?> getUserByUserNameContains(@PathVariable String username){
