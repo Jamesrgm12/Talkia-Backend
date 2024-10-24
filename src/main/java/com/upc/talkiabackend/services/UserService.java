@@ -12,4 +12,6 @@ public interface UserService {
     public List<User> listUsersByRegisterDate(LocalDate startDate, LocalDate endDate);
     public List<User> listUsersByStatus(String status);
     public User updateUser(User user);
+    List<User> getUserByUserNameContains(String username);
+
 }

@@ -51,6 +51,10 @@ public class UserServiceImpl implements UserService {
     public List<User> listUsersByStatus(String status){
         return userRepository.listUsersByStatus(status);
     }
+    @Override
+    public  List<User> getUserByUserNameContains(String username){
+        return userRepository.getUserByUserNameContains(username);
+    }
 
 
 }

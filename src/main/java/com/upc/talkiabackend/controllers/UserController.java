@@ -92,5 +92,15 @@ public class UserController {
         }
     }
 
-
+    @GetMapping("/user_by_username/{username}")
+    public ResponseEntity<?> getUserByUserNameContains(@PathVariable String username){
+        try {
+            List<User>users =  userService.getUserByUserNameContains(username);
+            List<UserDTO> userDTOS = modelMapper.map(users, List.class);
+            return new ResponseEntity<>(userDTOS, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

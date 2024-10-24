@@ -24,5 +24,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             "    where sh2.user = sh.user and sh2.status = 'Activado' and sh2.endDate>=current date" +
             "))")
     List<User> listUsersByStatus(@Param("status") String status);
+    List<User> getUserByUserNameContains(String username);
 
 }
