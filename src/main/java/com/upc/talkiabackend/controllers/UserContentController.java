@@ -18,8 +18,6 @@ import java.util.List;
 public class UserContentController {
 
     @Autowired
-    private SuscriptionHistoryService suscriptionHistoryService;
-    @Autowired
     private UserContentService userContentService;
 
     @PreAuthorize("hasRole('USER')")
@@ -53,16 +51,6 @@ public class UserContentController {
             List<ShowContentHistoryDTO> contentDTOs = userContentService.ListUserContentByUser(userId);
             return new ResponseEntity<>(contentDTOs, HttpStatus.OK);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-    @GetMapping("/suscriptionHistoryByUser/{userId}")
-    public ResponseEntity<?> listHistoryByUser(@PathVariable int userId){
-        try {
-            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByUser(userId);
-            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
-        }
-        catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

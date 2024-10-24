@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.controllers;
 
 import com.upc.talkiabackend.dtos.queries.CountHistoriesByObjectDTO;
+import com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO;
 import com.upc.talkiabackend.dtos.queries.TotalAmountBySubTypeDTO;
 import com.upc.talkiabackend.services.SuscriptionHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,17 @@ public class SuscriptionHistoryController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @GetMapping("/suscriptionHistoryByUser/{userId}")
+    public ResponseEntity<?> listHistoryByUser(@PathVariable int userId){
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByUser(userId);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 }

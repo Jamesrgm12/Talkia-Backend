@@ -46,6 +46,7 @@ public class PaymentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PreAuthorize("hasRole('USER')")
 
     @GetMapping("/payments")
     public ResponseEntity<?> listPayments(){
