@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.repositories;
 
 import com.upc.talkiabackend.dtos.queries.CountHistoriesByObjectDTO;
+import com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO;
 import com.upc.talkiabackend.dtos.queries.TotalAmountBySubTypeDTO;
 import com.upc.talkiabackend.entities.SuscriptionsHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -19,7 +20,10 @@ public interface SuscriptionHistoryRepository extends JpaRepository<Suscriptions
             "from SuscriptionsHistory sh where sh.startDate between :startDate and :endDate group by sh.suscription.name")
     List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
-    //Funciona
+    @Query("select new com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO(sh.user.name, sh.payment.id, sh.startDate, sh.payment.amount) " +
+            "from SuscriptionsHistory sh where sh.user.id =:userId")
+    List<HistoryByObjectDTO> listHistoryByUser(@Param("userId") int userId);
+
     @Query("select new com.upc.talkiabackend.dtos.queries.CountHistoriesByObjectDTO(sh.payment.paymentType.name ,count(sh)) " +
             "from SuscriptionsHistory sh where sh.startDate between :startDate and :endDate group by sh.payment.paymentType.name ")
     List<CountHistoriesByObjectDTO> countHistoriesByPaymentType(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);

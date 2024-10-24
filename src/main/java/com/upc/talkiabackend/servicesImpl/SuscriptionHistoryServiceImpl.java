@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.servicesImpl;
 
 import com.upc.talkiabackend.dtos.queries.CountHistoriesByObjectDTO;
+import com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO;
 import com.upc.talkiabackend.dtos.queries.TotalAmountBySubTypeDTO;
 import com.upc.talkiabackend.entities.*;
 import com.upc.talkiabackend.repositories.*;
@@ -92,6 +93,10 @@ public class SuscriptionHistoryServiceImpl implements SuscriptionHistoryService 
     @Override
     public List<TotalAmountBySubTypeDTO> listTotalAmountBySubType(LocalDate startDate, LocalDate endDate) {
         return shRepository.listTotalAmountBySubType(startDate, endDate);
+    }
+    @Override
+    public List<HistoryByObjectDTO> listHistoryByUser(int userId) {
+        return shRepository.listHistoryByUser(userId);
     }
 
 }

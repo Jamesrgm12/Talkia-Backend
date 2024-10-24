@@ -1,6 +1,7 @@
 package com.upc.talkiabackend.servicesImpl;
 
 import com.upc.talkiabackend.dtos.queries.ShowYearlyPaymentsDTO;
+import com.upc.talkiabackend.entities.Payment;
 import com.upc.talkiabackend.repositories.PaymentRepository;
 import com.upc.talkiabackend.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<ShowYearlyPaymentsDTO> listPaymentsByUser(Integer userId) {
         return paymentRepository.listPaymentsByUser(userId);
+    }
+    @Override
+    public List<Payment> listPayments() {
+        return paymentRepository.findAll();
     }
 }

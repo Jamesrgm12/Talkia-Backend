@@ -1,6 +1,8 @@
 package com.upc.talkiabackend.controllers;
 
+import com.upc.talkiabackend.dtos.PaymentDTO;
 import com.upc.talkiabackend.dtos.queries.ShowYearlyPaymentsDTO;
+import com.upc.talkiabackend.entities.Payment;
 import com.upc.talkiabackend.services.PaymentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +46,18 @@ public class PaymentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @GetMapping("/payments")
+    public ResponseEntity<?> listPayments(){
+        try {
+            List<Payment> list = paymentService.listPayments();
+            List<PaymentDTO> listDTO = modelMapper.map(list, List.class);
+            return new ResponseEntity<>(listDTO, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 }

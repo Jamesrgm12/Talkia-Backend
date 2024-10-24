@@ -1,7 +1,9 @@
 package com.upc.talkiabackend.controllers;
 
+import com.upc.talkiabackend.dtos.queries.HistoryByObjectDTO;
 import com.upc.talkiabackend.dtos.queries.ShowContentHistoryDTO;
 import com.upc.talkiabackend.dtos.queries.ShowHistorialContentDTO;
+import com.upc.talkiabackend.services.SuscriptionHistoryService;
 import com.upc.talkiabackend.services.UserContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,8 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserContentController {
 
+    @Autowired
+    private SuscriptionHistoryService suscriptionHistoryService;
     @Autowired
     private UserContentService userContentService;
 
@@ -52,4 +56,16 @@ public class UserContentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @GetMapping("/suscriptionHistoryByUser/{userId}")
+    public ResponseEntity<?> listHistoryByUser(@PathVariable int userId){
+        try {
+            List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByUser(userId);
+            return new ResponseEntity<>(historyDTOs, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 }
