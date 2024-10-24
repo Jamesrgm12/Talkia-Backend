@@ -33,6 +33,7 @@ public class PaymentController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/paymentsbyyear/{userId}")
     public ResponseEntity<?> listPaymentsByUser(@PathVariable Integer userId){
         try {
