@@ -3,6 +3,7 @@ package com.upc.talkiabackend.controllers;
 import com.upc.talkiabackend.dtos.ContentDTO;
 import com.upc.talkiabackend.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO;
+import com.upc.talkiabackend.dtos.queries.UrlDTO;
 import com.upc.talkiabackend.entities.Content;
 import com.upc.talkiabackend.services.ContentService;
 import org.modelmapper.ModelMapper;
@@ -129,4 +130,17 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
+
+  @GetMapping("/content_url/{title}")
+  public ResponseEntity<?> listContentByUrl(@PathVariable String title) {
+    try {
+      List<UrlDTO> urlDTOs = contentService.listContentByLink(title);
+      return new ResponseEntity<>(urlDTOs, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
+
+
 }

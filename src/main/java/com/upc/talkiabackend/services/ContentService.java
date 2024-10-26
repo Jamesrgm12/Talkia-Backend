@@ -2,6 +2,7 @@ package com.upc.talkiabackend.services;
 
 import com.upc.talkiabackend.dtos.queries.ShowContentByDayDTO;
 import com.upc.talkiabackend.dtos.queries.ShowContentByFilterDTO;
+import com.upc.talkiabackend.dtos.queries.UrlDTO;
 import com.upc.talkiabackend.entities.Content;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface ContentService {
   public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationAsc();
   public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc();
   public Content insertContent(Content content);
+  public List<UrlDTO> listContentByLink(String title);
+
 }
