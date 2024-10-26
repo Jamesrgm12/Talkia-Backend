@@ -130,7 +130,7 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
-
+  @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
   @GetMapping("/content_url/{title}")
   public ResponseEntity<?> listContentByUrl(@PathVariable String title) {
     try {
