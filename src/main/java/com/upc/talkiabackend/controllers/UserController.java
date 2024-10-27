@@ -24,6 +24,7 @@ public class UserController {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable int id){
         try {
