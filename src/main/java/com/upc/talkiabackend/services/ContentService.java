@@ -18,5 +18,5 @@ public interface ContentService {
   public List<ShowContentByDayDTO> listContentOrderByDateOfPublicationDesc();
   public Content insertContent(Content content);
   public List<UrlDTO> listContentByLink(String title);
-
+  public Content updateContent(Content content);
 }

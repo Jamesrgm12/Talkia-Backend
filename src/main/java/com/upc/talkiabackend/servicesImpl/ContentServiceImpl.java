@@ -57,4 +57,12 @@ public class ContentServiceImpl implements ContentService {
   public Content insertContent(Content content) {
     return contentRepository.save(content);
   }
+
+  @Override
+  public Content updateContent(Content content) {
+    if(contentRepository.existsById(content.getId())){
+      return contentRepository.save(content);
+    }
+    return null;
+  }
 }

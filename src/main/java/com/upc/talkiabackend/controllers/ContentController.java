@@ -142,5 +142,16 @@ public class ContentController {
     }
   }
 
-
+  @PutMapping("/content")
+  public ResponseEntity<?> updateContent(@RequestBody ContentDTO contentDTO) {
+    try {
+      Content content = modelMapper.map(contentDTO, Content.class);
+      content = contentService.updateContent(content);
+      contentDTO = modelMapper.map(content, ContentDTO.class);
+      return new ResponseEntity<>(contentDTO, HttpStatus.OK);
+    }
+    catch (Exception e){
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+  }
 }
