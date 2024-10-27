@@ -142,6 +142,7 @@ public class ContentController {
     }
   }
 
+  @PreAuthorize("hasRole('ADMIN')")
   @PutMapping("/content")
   public ResponseEntity<?> updateContent(@RequestBody ContentDTO contentDTO) {
     try {
