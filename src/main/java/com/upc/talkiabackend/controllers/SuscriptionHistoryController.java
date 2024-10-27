@@ -65,7 +65,7 @@ public class SuscriptionHistoryController {
         }
     }
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/suscriptionHistoryByPaymenyType/{paymentTypeName}")
+    @GetMapping("/suscriptionHistoryByPaymentType/{paymentTypeName}")
     public ResponseEntity<?> listHistoryByPaymentType(@PathVariable String paymentTypeName) {
         try {
             List<HistoryByObjectDTO> historyDTOs = suscriptionHistoryService.listHistoryByPaymentType(paymentTypeName);
