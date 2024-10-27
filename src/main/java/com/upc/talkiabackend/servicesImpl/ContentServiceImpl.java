@@ -65,4 +65,10 @@ public class ContentServiceImpl implements ContentService {
     }
     return null;
   }
+  @Override
+  public void deleteContent(int id) {
+    if(contentRepository.existsById(id)){
+      contentRepository.deleteById(id);
+    }
+  }
 }

@@ -19,4 +19,6 @@ public interface ContentService {
   public Content insertContent(Content content);
   public List<UrlDTO> listContentByLink(String title);
   public Content updateContent(Content content);
+  public void deleteContent(int id);
+
 }

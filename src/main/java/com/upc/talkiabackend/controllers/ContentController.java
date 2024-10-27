@@ -155,4 +155,14 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
+  @DeleteMapping("/content/{id}")
+  public ResponseEntity<?> deleteContent(@PathVariable int id) {
+    try {
+      contentService.deleteContent(id);
+      return new ResponseEntity<>("Contenido eliminado correctamente", HttpStatus.OK);
+    }
+    catch (Exception e){
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+  }
 }
