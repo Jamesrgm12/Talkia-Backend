@@ -155,6 +155,7 @@ public class ContentController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
   }
+  @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/content/{id}")
   public ResponseEntity<?> deleteContent(@PathVariable int id) {
     try {
