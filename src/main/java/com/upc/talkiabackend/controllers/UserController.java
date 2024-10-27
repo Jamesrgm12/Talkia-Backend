@@ -24,6 +24,17 @@ public class UserController {
 
     private final ModelMapper modelMapper = new ModelMapper();
 
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable int id){
+        try {
+            userService.deleteUser(id);
+            return new ResponseEntity<>("Usuario eliminado correctamente", HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @PostMapping("/user")
     public ResponseEntity<?> insertUser(@RequestBody UserDTO userDTO){

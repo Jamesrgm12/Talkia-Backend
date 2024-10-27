@@ -13,5 +13,5 @@ public interface UserService {
     public List<User> listUsersByStatus(String status);
     public User updateUser(User user);
     List<User> getUserByUserNameContains(String username);
-
+    public void deleteUser(int id);
 }

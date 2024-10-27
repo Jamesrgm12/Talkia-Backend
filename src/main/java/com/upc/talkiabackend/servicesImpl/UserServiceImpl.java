@@ -15,6 +15,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Override
+    @Transactional
+    public void deleteUser(int id) {
+        userRepository.deleteById(id);
+    }
+
     @Override
     public void updateLevelUser(int userId) {
 
