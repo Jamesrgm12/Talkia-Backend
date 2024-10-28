@@ -65,7 +65,7 @@ public class AnswerController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
+  @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/answer/{id}")
   public ResponseEntity<String> deleteAnswer(@PathVariable int id){
     try {
