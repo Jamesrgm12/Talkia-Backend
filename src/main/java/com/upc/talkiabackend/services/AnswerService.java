@@ -11,5 +11,5 @@ public interface AnswerService {
     public List<ShowAnswersByQuestionAdminDTO> listAnswerByQuestionAdmin(int questionId);
     public List<ShowAnswersByQuestionUserDTO> listAnswerByQuestionUser(int questionId);
     public Answer updateAnswer(Answer answer);
-
+  public void deleteAnswer(int id);
 }

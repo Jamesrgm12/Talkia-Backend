@@ -34,5 +34,11 @@ public class AnswerServiceImpl implements AnswerService {
         }
         return null;
     }
+  @Override
+  public void deleteAnswer(int id){
+    if(answerRepository.existsById(id)){
+      answerRepository.deleteById(id);
+    }
+  }
 
 }

@@ -66,4 +66,15 @@ public class AnswerController {
         }
     }
 
+  @DeleteMapping("/answer/{id}")
+  public ResponseEntity<String> deleteAnswer(@PathVariable int id){
+    try {
+      answerService.deleteAnswer(id);
+      return new ResponseEntity<>("Respuesta eliminada correctamente", HttpStatus.OK);
+    }
+    catch (Exception e){
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+  }
+
 }
