@@ -77,6 +77,17 @@ public class QuestionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+  @DeleteMapping("/question/{id}")
+  public ResponseEntity<?> deleteQuestion(@PathVariable int id){
+    try {
+      questionService.deleteQuestion(id);
+      return new ResponseEntity<>("Pregunta eliminada correctamente", HttpStatus.OK);
+    }
+    catch (Exception e){
+      return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+  }
+
 
 
 }
