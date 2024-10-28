@@ -77,6 +77,7 @@ public class QuestionController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+  @PreAuthorize("hasRole('ADMIN')")
   @DeleteMapping("/question/{id}")
   public ResponseEntity<?> deleteQuestion(@PathVariable int id){
     try {
